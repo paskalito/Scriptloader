@@ -1,0 +1,65 @@
+#!/bin/bash
+# 20140626, by paskalito
+# v0.2
+# Changelog:
+# Added Logic for the Case that no LDAP Group is set to be required, this also means that this can bin included in everyfile. even in those who has nothing to do with ldap.
+
+
+# This code checks if a the var $REQUIREDLDAPGROUP has a value. And gives it Output in the VAR $LDAPCHECKSTATUS.
+
+# 0 = No LDAP Group was required
+# 1 = LDAP-Group matched
+# 2 = Not in required LDAP-Group
+
+
+# The basic LDAP settings have to be Provided in the Main Config.
+# The Specific Group you want to check for is set in the actaul end-script (In the Scripts directory)
+
+
+
+
+# ---------- >> Don't Edit Below This Line << -----------------------------
+# Clear the var $REQUIREDLDAPGROUP
+#REQUIREDLDAPGROUP=
+# IF var $REQUIREDLDAPGROUP has a lenght of 0, set $LDAPCHECKSTATUS to 0
+if [ -z $REQUIREDLDAPGROUP ] ;
+	then
+	echo "LDAP Check skipped"
+	LDAPCHECKSTATUS=0
+else
+	# Check if current user is in provided LDAP Group.
+	# This is the main command (LDAP Query), feel free to adjust it for you needs if you know what you do. (I wrote it for Active Directory, and the case that all Targetet users are in a common Organisation Unit)
+	SEARCHPATTERN=`ldapsearch -x -h $LDAPSERVERIP -D $GENERICLDAPUSER -w $GENERICLDAPUSERPASSWORD -b "$LDAPSEARCHSTRING" -s sub "(&(objectCategory=person)(objectClass=user)(sAMAccountName=$USERSSAMACCOUNTNAME))" -LLL memberOf | grep $REQUIREDLDAPGROUP`
+#	echo "Is $USERSSAMACCOUNTNAME part of the Group $REQUIREDLDAPGROUP ?"
+	# Checking if the var $SEARCHPATTERN is not empty. And returns YES. (It can be empty when the user wasn't found, or a wrong group was specified).
+	if [ ! -z "$SEARCHPATTERN" ]
+		then
+			USERISINLDAPGROUP=0
+#			echo "YES (0)"
+		else
+			USERISINLDAPGROUP=1
+#			echo "NO (1)"
+	fi
+
+	# if the lenght of var $REQUIREDLDAPGROUP not 0 (has a value) and if var $USERISINLDAPGROUP is 0 (true) set $LDAPCHECKSTATUS to 1
+	if [ ! -z $REQUIREDLDAPGROUP ] && [ $USERISINLDAPGROUP -eq 0 ] ;
+		then
+		echo "The User $USERSSAMACCOUNTNAME is part of the LDAP-Group $REQUIREDLDAPGROUP. $SCREENNAME will be copied/updated/applied."
+		LDAPCHECKSTATUS=1
+	fi
+
+	# if the lenght of var $REQUIREDLDAPGROUP not 0 (has a value) and if var $USERISINLDAPGROUP is 1 (Not True) set $LDAPCHECKSTATUS to 2
+	if [ ! -z $REQUIREDLDAPGROUP ] && [ $USERISINLDAPGROUP -eq 1 ] ;
+		then
+		echo "The User $USERSSAMACCOUNTNAME is not part of the LDAP-Group $REQUIREDLDAPGROUP. $SCREENNAME will be skipped."
+		LDAPCHECKSTATUS=2
+	fi
+
+fi
+
+# Clear the var $REQUIREDLDAPGROUP (it's not used anymore, since now only the ldapcheckstatus is important.')
+REQUIREDLDAPGROUP=
+# ---------- >> Don't Edit Above This Line << -----------------------------
+
+
+
