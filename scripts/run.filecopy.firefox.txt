@@ -1,0 +1,41 @@
+#!/bin/bash
+# V0.2
+# Changelog
+# V02 > Kommentare verbessert und changelog eingefügt.
+
+
+# Hier ist der Name der LDAP Gruppe einzutragen in der der User sein muss um das Programm zu bekommen.
+# Wenn keine Grupper gewünscht ist Variabel Leeren.
+REQUIREDLDAPGROUP=
+
+# Der Name der Applikation oder Datei (Einzahl) / (Wichtig für Fehlersuche und Überischt)
+SCREENNAME="Firefox"
+
+
+
+# Der Pfad zu der Datei oder dem Ordner. (muss im Daten-Ordner Liegen) 
+# (Wenn er Leerzeichen beinhaltet mit \ Escapen)
+# KEIN / am Ende.
+# Wenn ein Ordner Kopiert werden soll : als THINGTOCOPY den Ordner angeben.
+THINGTOCOPY=/Firefox.app
+# Falls die Datei oder der Ordner in einem Unterordner Liegt, THINGSUBDIRECTORY ageben (wenn nicht Leer lassen.)
+THINGSUBDIRECTORY=/Firefox
+
+# Der Zielordner, wo die Applikation oder Datei hingeschrieben werden soll, mit \ Escaped und ohne / am Ende. (Es können Platzhalter wie ~ verwendet werden)
+DESTINATION=/Applications
+
+
+
+
+
+
+# ---------- >> Don't Edit Below This Line << -----------------------------
+
+source $RELPATH/config/filecopy
+
+# -------------------------------------------------------------------------
+
+# ---------- >> Hier ist Platz für Programmspezifische eigene Befehle << -
+
+
+# -------------------------------------------------------------------------
