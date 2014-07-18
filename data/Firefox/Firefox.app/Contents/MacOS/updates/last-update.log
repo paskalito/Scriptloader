@@ -1,0 +1,95 @@
+Performing a background update
+SOURCE DIRECTORY /Applications/Firefox.app/Contents/MacOS/updates/0
+DESTINATION DIRECTORY /Applications/Firefox.app/Updated.app
+UPDATE TYPE partial
+PREPARE ADD precomplete
+PREPARE PATCH Contents/_CodeSignature/CodeResources
+PREPARE PATCH Contents/MacOS/webapprt/webapprt.ini
+PREPARE PATCH Contents/MacOS/webapprt-stub
+PREPARE PATCH Contents/MacOS/platform.ini
+PREPARE PATCH Contents/MacOS/omni.ja
+PREPARE PATCH Contents/MacOS/libsoftokn3.dylib
+PREPARE ADD Contents/MacOS/libsoftokn3.chk
+PREPARE PATCH Contents/MacOS/libnssdbm3.dylib
+PREPARE ADD Contents/MacOS/libnssdbm3.chk
+PREPARE PATCH Contents/MacOS/libnssckbi.dylib
+PREPARE PATCH Contents/MacOS/libnss3.dylib
+PREPARE PATCH Contents/MacOS/libfreebl3.dylib
+PREPARE ADD Contents/MacOS/libfreebl3.chk
+PREPARE PATCH Contents/MacOS/firefox-bin
+PREPARE ADD Contents/MacOS/firefox
+PREPARE PATCH Contents/MacOS/browser/omni.ja
+PREPARE PATCH Contents/MacOS/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/install.rdf
+PREPARE PATCH Contents/MacOS/browser/blocklist.xml
+PREPARE PATCH Contents/MacOS/application.ini
+PREPARE PATCH Contents/MacOS/XUL
+PREPARE PATCH Contents/Info.plist
+PREPARE PATCH Contents/CodeResources
+EXECUTE ADD precomplete
+EXECUTE PATCH Contents/_CodeSignature/CodeResources
+EXECUTE PATCH Contents/MacOS/webapprt/webapprt.ini
+EXECUTE PATCH Contents/MacOS/webapprt-stub
+EXECUTE PATCH Contents/MacOS/platform.ini
+EXECUTE PATCH Contents/MacOS/omni.ja
+EXECUTE PATCH Contents/MacOS/libsoftokn3.dylib
+EXECUTE ADD Contents/MacOS/libsoftokn3.chk
+EXECUTE PATCH Contents/MacOS/libnssdbm3.dylib
+EXECUTE ADD Contents/MacOS/libnssdbm3.chk
+EXECUTE PATCH Contents/MacOS/libnssckbi.dylib
+EXECUTE PATCH Contents/MacOS/libnss3.dylib
+EXECUTE PATCH Contents/MacOS/libfreebl3.dylib
+EXECUTE ADD Contents/MacOS/libfreebl3.chk
+EXECUTE PATCH Contents/MacOS/firefox-bin
+EXECUTE ADD Contents/MacOS/firefox
+EXECUTE PATCH Contents/MacOS/browser/omni.ja
+EXECUTE PATCH Contents/MacOS/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/install.rdf
+EXECUTE PATCH Contents/MacOS/browser/blocklist.xml
+EXECUTE PATCH Contents/MacOS/application.ini
+EXECUTE PATCH Contents/MacOS/XUL
+EXECUTE PATCH Contents/Info.plist
+EXECUTE PATCH Contents/CodeResources
+FINISH ADD precomplete
+FINISH PATCH Contents/_CodeSignature/CodeResources
+FINISH PATCH Contents/MacOS/webapprt/webapprt.ini
+FINISH PATCH Contents/MacOS/webapprt-stub
+FINISH PATCH Contents/MacOS/platform.ini
+FINISH PATCH Contents/MacOS/omni.ja
+FINISH PATCH Contents/MacOS/libsoftokn3.dylib
+FINISH ADD Contents/MacOS/libsoftokn3.chk
+FINISH PATCH Contents/MacOS/libnssdbm3.dylib
+FINISH ADD Contents/MacOS/libnssdbm3.chk
+FINISH PATCH Contents/MacOS/libnssckbi.dylib
+FINISH PATCH Contents/MacOS/libnss3.dylib
+FINISH PATCH Contents/MacOS/libfreebl3.dylib
+FINISH ADD Contents/MacOS/libfreebl3.chk
+FINISH PATCH Contents/MacOS/firefox-bin
+FINISH ADD Contents/MacOS/firefox
+FINISH PATCH Contents/MacOS/browser/omni.ja
+FINISH PATCH Contents/MacOS/browser/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/install.rdf
+FINISH PATCH Contents/MacOS/browser/blocklist.xml
+FINISH PATCH Contents/MacOS/application.ini
+FINISH PATCH Contents/MacOS/XUL
+FINISH PATCH Contents/Info.plist
+FINISH PATCH Contents/CodeResources
+succeeded
+calling QuitProgressUI
+Performing a replace request
+SOURCE DIRECTORY /Applications/Firefox.app/Contents/MacOS/updates/0
+DESTINATION DIRECTORY /Applications/Firefox.app/Updated.app
+Begin moving sourceDir (/Applications/Firefox.app/Contents) to tmpDir (/Applications/Firefox.app/Contents.bak)
+rename_file: proceeding to rename the directory
+Begin moving newDir (/Applications/Firefox.app/Updated.app/Contents) to sourceDir (/Applications/Firefox.app/Contents)
+rename_file: proceeding to rename the directory
+Now, remove the tmpDir
+Moving the precomplete file
+ensure_remove: failed to remove file: /Applications/Firefox.app/precomplete.bak, rv: -1, err: 2
+Begin moving precompleteSrc to precompleteTmp
+Moved precompleteSrc to precompleteTmp, err: 0
+Begin moving precompleteNew to precompleteSrc
+rename_file: failed to read file status info: /Applications/Firefox.app/Updated.app/precomplete, err: 2
+Moved precompleteNew to precompleteSrc, err: 6
+Begin trying to recover precompleteSrc
+Moved precompleteTmp to precompleteSrc, err: 0
+Finished moving the precomplete file
+succeeded
+calling QuitProgressUI
