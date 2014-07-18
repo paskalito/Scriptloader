@@ -31,7 +31,7 @@ DESTINATION=/Applications
 
 # ---------- >> Don't Edit Below This Line << -----------------------------
 
-source $RELPATH/config/filecopy
+source $RELPATH/functions/filecopy
 
 # -------------------------------------------------------------------------
 
