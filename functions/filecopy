@@ -1,0 +1,67 @@
+#!/bin/bash
+# Filecopy 0.3 by paskalito
+# Release-Notes:
+# 130606,v0.2; Abfrage von info.plist eingeführt (dazu war eine grundlegende struckturänderung nötig), Sleeps auskommentiert, bei unserem setup +716% Geschwindigkeit.
+# 140715,v0.3; LDAP Query Integrated, VAR $UPDATE now gets cleared before it gets used.
+
+echo "$SPACE"
+
+# Enable LDAP Checking
+# 0 = No LDAP Group was required
+# 1 = LDAP-Group matched
+# 2 = Not in required LDAP-Group
+source $RELPATH/functions/ldap-group-query
+
+
+# if $LDAPCHECKSTATUS is set to 0 or 1, copy  
+if [ $LDAPCHECKSTATUS -eq 0 ] || [ $LDAPCHECKSTATUS -eq 1 ];
+	then
+
+	# copy the thing
+	# Variabeln werden aus anderen Variabeln zusammengesetzt
+	FULLSOURCEPATHONSERVER="$RELPATH""$PATHTODATA""$THINGSUBDIRECTORY""$THINGTOCOPY"
+	FULLDESTINATIONPATHONCLIENT="$DESTINATION""$THINGTOCOPY"
+
+	# Für Debugging
+	#echo PATHTODATA : $PATHTODATA
+	#echo FULLSOURCEPATHONSERVER : $FULLSOURCEPATHONSERVER
+	#echo FULLDESTINATIONPATHONCLIENT : $FULLDESTINATIONPATHONCLIENT
+
+	# Clear the var $UPDATE
+	UPDATE=
+	echo "$SCREENNAME Versionen werden Verglichen"
+	# Wenn ein Info Plist exisitert vergleiche diese.
+	if [ -f "$FULLSOURCEPATHONSERVER/Contents/Info.plist" ] ; then
+		diff "$FULLSOURCEPATHONSERVER/Contents/Info.plist" "$FULLDESTINATIONPATHONCLIENT/Contents/Info.plist"
+		# Wenn der vergleich der Info Plist unterschiede zu Tage fördert setze die Variabel Update auf 1
+		if [ $? -ne 0 ] ; then
+			UPDATE=1
+		fi
+	# Wenn keine Info Plist existiert vergleiche alles.	
+	else
+		echo "Keine Info.plist gefunden..."
+		echo "Vergleiche Quelle vollständig..."
+		diff -r "$FULLSOURCEPATHONSERVER" "$FULLDESTINATIONPATHONCLIENT"
+		# Wenn der vergleich der Info Plist unterschiede zu Tage fördert setze die Variabel Update auf 1
+		if [ $? -ne 0 ] ; then
+			UPDATE=1
+		fi
+	fi
+
+	# Wenn die Variabel UPDATE = 1 Lösche sie auf dem Client und Kopiere sie neu vom Server.
+	if [ "$UPDATE" == 1 ] ; then
+		echo "$SCREENNAME Version ist unterschiedlich und wird darum aktualisiert."
+	##	sleep 3
+		rm -rf "$FULLDESTINATIONPATHONCLIENT"
+
+
+		rsync -a --progress --delete "$FULLSOURCEPATHONSERVER" "$DESTINATION"/
+		echo $SCREENNAME Kopiert/Aktualisiert
+	##	sleep 3
+	# Wenn nicht belasse alles beim alten.
+	else
+		echo "$SCREENNAME ist schon aktuell!";
+	##	sleep 2
+
+	fi
+fi
