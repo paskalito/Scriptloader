@@ -1,0 +1,10 @@
+# ACHUTUNG, da ich davon ausgehe das wir die Funktion "hdiutil compact" oft brauchen werden, hab ich eine Funktion dafür erstellt.
+# Sie liegt im config ordner und ist da Zentral veränderbar.
+# Dies ist eine Beispieldatei die man Kopieren kann.
+# Für den einsatz eines Images, einfach den Pfad dazu angeben.
+
+IMAGEPATH=/Volumes/SomeHD/data/exampleimage.sparseimage
+
+# ---------- >> Don't Edit Below This Line << -------------------
+
+source 	$RELPATH/functions/function_hdiutil_compact
