@@ -1,0 +1,11 @@
+# Das ist die hdiutli compact version die von allen scripts mit namen hdiutil geladen wird - änderungen sind mit vorsicht anzubringen.
+
+echo "$STARLINE"
+echo Das Folgende Image wird jetzt Komprimiert $IMAGEPATH
+echo "$STARLINE"
+sleep 2
+
+# Komprimiert Mitwachsende apple Images.
+hdiutil Compact "$IMAGEPATH"
+
+echo "$DOTLINE"
