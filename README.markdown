@@ -28,5 +28,4 @@ I keep the Workstations clean and up to date with this, and as well some servers
 
 ## General Notes
 - Have a Look at the Code, everything should be pretty well commented. And somehow selfexplaining.
-- for the workstations we have the structure of run.nameoffunction.specific.program (eg. run.filecopy.firedox, run.hdiutil.Userbackup) and for all custom scripts that don't make usage of a functions file. (run.custom.firefox.startpage)
-- We Use it on one hand to set various preferences in the user profile, and in the other hand to update related Apllications
+- to Shedule the Sciptloader, use Lingon / Launchd
