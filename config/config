@@ -25,7 +25,7 @@ LDAPSERVERIP=
 # That user must have the rights to search the directory. (In Genreal that user dont have to be in ANY group (Except in the OU))
 GENERICLDAPUSER=
 GENERICLDAPUSERPASSWORD=
-# This must be a String wehre every user you might target is in. (best to just define the Organisation Unit (ou), and Domain Controller (dc)) > Example = ou=Users,dc=mydomain,dc=com
+# This must be a String where every user you might target is in. (best to just define the Organisation Unit (ou), and Domain Controller (dc)) > Example = ou=Users,dc=mydomain,dc=com
 LDAPSEARCHSTRING=
 
 
