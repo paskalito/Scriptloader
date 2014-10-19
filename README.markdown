@@ -25,3 +25,8 @@ I keep the Workstations clean and up to date with this, and as well some servers
 ## Limitations
 - Does not work from a path that contains a space.
 - If you want to use it to deploy software you have to give your users write access to the "/Applications" folder. (Or run it somehow with Admin rights, if you find a way how to to that pls contact me)
+
+## General Notes
+- Have a Look at the Code, everything should be pretty well commented. And somehow selfexplaining.
+- for the workstations we have the structure of run.nameoffunction.specific.program (eg. run.filecopy.firedox, run.hdiutil.Userbackup) and for all custom scripts that don't make usage of a functions file. (run.custom.firefox.startpage)
+- We Use it on one hand to set various preferences in the user profile, and in the other hand to update related Apllications
