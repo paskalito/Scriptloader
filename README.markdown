@@ -18,6 +18,7 @@ I keep the Workstations clean and up to date with this, and as well some servers
 
 ## Usage
 - Put any script you want to run in the scripts folder, and make sure it's name beginns with "run."
+ - to dactivate a script just rename it to "inactive.*"
 - Use one of the example Scrips which make usage of the provided functions (in functions folder) and ajust them to your needs.
 - Have a look at the config file. (you can customize almost everything)
  - In order to use the LDAP feauture of the function "filecopy" you need to fill out LDAp configuration here!
