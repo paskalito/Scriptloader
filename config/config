@@ -12,7 +12,7 @@ FILTER="run.*"
 
 # Code um die Systemsprache zu bestimmen
 LANGUAGECODE=`defaults read .GlobalPreferences AppleLanguages | tr -d [:space:] | cut -c2-3`
-echo Sprache ist = $LANGUAGECODE
+echo Language is = $LANGUAGECODE
 
 # ------------------------- >> LDAP Config Start << -------------------------
 # With this Set Up you can Acess the Variable $USERISINLDAPGROUP which tells you if the current user is in a certain LDAP Group or not.
@@ -25,31 +25,31 @@ LDAPSERVERIP=
 # That user must have the rights to search the directory. (In Genreal that user dont have to be in ANY group (Except in the OU))
 GENERICLDAPUSER=
 GENERICLDAPUSERPASSWORD=
-# This must be a String where every user you might target is in. (best to just define the Organisation Unit (ou), and Domain Controller (dc)) > Example = ou=Users,dc=mydomain,dc=com
-LDAPSEARCHSTRING=
+# This must be a String wehre every user you might target is in. (best to just define the Organisation Unit (ou), and Domain Controller (dc))
+LDAPSEARCHSTRING=ou=user,dc=domain,dc=com
 
 
 # ------------------------- >> LDAP Config END << -------------------------
 
 #Code um Vor und Nachname zu bestimmen
-PRENAME=`dscl . -read ~ RealName | tail -1 | cut -d " " -f2`
-SURENAME=`dscl . -read ~ RealName | tail -1 | cut -d " " -f3`
+PRENAME=`finger -l | grep Name: | cut -d ":" -f3 | cut -d " " -f2`
+SURNAME=`finger -l | grep Name: | cut -d ":" -f3 | cut -d " " -f3`
 echo Prename = $PRENAME
 echo Surname = $SURNAME
 
-LOWERCASEPRENAME=`dscl . -read ~ RealName | tail -1 | cut -d " " -f2 | tr '[:upper:]' '[:lower:]'`
-LOWERCASESURENAME=`dscl . -read ~ RealName | tail -1 | cut -d " " -f3 | tr '[:upper:]' '[:lower:]'`
-echo Prename-lowercase = $LOWERCASEPRENAME
-echo Surname-lowercase = $LOWERCASESURNAME
+LOWERCASEPRENAME=`finger -l | grep Name: | cut -d ":" -f3 | cut -d " " -f2 | tr '[:upper:]' '[:lower:]'`
+LOWERCASESURNAME=`finger -l | grep Name: | cut -d ":" -f3 | cut -d " " -f3 | tr '[:upper:]' '[:lower:]'`
+echo Prename Lowercase = $LOWERCASEPRENAME
+echo Surname Lowercase = $LOWERCASESURNAME
 
 # Extract Coputer UUID (Output will look something like this: 59F77AD6-103F-5D34-BA83-2366512989FA)
-UUID=`/usr/sbin/system_profiler SPHardwareDataType Hardware: | grep UUID: | awk '{print $3}'`
-echo UUID of current Computer = $UUID
+UUID=`/usr/sbin/system_profiler SPHardwareDataType Hardware: 2> /dev/null | grep UUID: | awk '{print $3}'`
+echo UUID = $UUID
 
 STARLINE="***************************"
 DOTLINE="---------------------------"
 
 
 echo "$STARLINE"
-echo Config-File Geladen
+echo Config-File loaded.
 echo "$STARLINE"
