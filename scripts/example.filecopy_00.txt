@@ -1,0 +1,44 @@
+#!/bin/bash
+# V0.3
+# Changelog
+# V0.2 > Improved comments and made a changelog
+# V0.3 > Translated comments to English
+
+
+# Here you have to fill in the name of an LDAP Group, in which the user has to be in order to receive whatever you specify here next. 
+# If you don't want to check for any LDAP Groups (if everyone just should get it) or if you havent ldap in use, leave the Variabel empty.
+REQUIREDLDAPGROUP=users
+
+# Name of the Application or File (in singular) / Is important and used for the ouputs, so you see what the script is doing, as well for logging and error search.
+SCREENNAME="Firefox - your favourite browser"
+
+
+
+# Relative path to the File or Folder. (Staring from the "data"-folder by default(can be changed in the main-config)) 
+# (If it contains spaces you will have to escape it with \  (backslash) ) e.g [ Text Wrangler.app = Text\ Wrangler.app ]
+# DON'T use / at the end of the path!
+# If you wanna Copy a Folder just write the path of it in THINGTOCOPY. e.g [ THINGTOCOPY=/my-folder ]
+
+THINGTOCOPY=/Firefox.app
+# If the Specific file or Folder is lying in a subdirectory of "data" you can define that here. (if not, leave blank) 
+THINGSUBDIRECTORY=
+
+# This is the the path of the targeted place on the target computer. where you want your file or folder have ended up. Again, escape spaces with \ and don't use / at the end. (you can use Variables like ~ here (~ = the users home))
+DESTINATION=/Applications
+
+
+
+
+
+
+# ---------- >> Don't Edit Below This Line << -----------------------------
+# This laods the code from the functions Folder that actually copies and compares and checks everything you just specified.
+
+source $RELPATH/functions/filecopy
+
+# -------------------------------------------------------------------------
+
+# ---------- >> Here you can run some custom commands after your program/file/folder was copied. - maybe you want to open it - so it's autostarted << -
+
+
+# -------------------------------------------------------------------------
