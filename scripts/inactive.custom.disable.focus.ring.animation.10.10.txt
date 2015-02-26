@@ -1,0 +1,10 @@
+#!/bin/bash
+# V0.1
+echo "$SPACE"
+
+# Disable focus rings when you click on any field in 10.10. ARG !!
+
+defaults write -globalDomain NSUseAnimatedFocusRing -bool NO
+
+
+echo "Disabled super annoying Focus Field animation of 10.10"
